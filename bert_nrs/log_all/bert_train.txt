@@ -1,0 +1,412 @@
+[INFO 2022-12-15 15:09:02,991] Namespace(apply_bert=True, batch_size=32, bert_trainable_layer=[2, 3], config_name='prajjwal1/bert-small', do_lower_case=True, drop_rate=0.2, enable_gpu=False, enable_hvd=True, enable_shuffle=True, epochs=4, filename_pat='behaviors_np4_*.tsv', filter_num=3, freeze_embedding=False, glove_embedding_path='./glove.840B.300d.txt', load_ckpt_name=None, log_steps=100, lr=5e-05, max_steps_per_epoch=7000, mode='train', model='NAML', model_dir='../model_all/bert', model_name='prajjwal1/bert-small', model_type='bert', news_dim=256, news_query_vector_dim=200, npratio=4, num_attention_heads=8, num_hidden_layers=4, num_words_abstract=50, num_words_body=100, num_words_title=30, num_workers=4, pooling='att', pretrain_lr=5e-05, pretrain_model_path='../BERT_finetune.pt', save_steps=50000, shuffle_buffer_size=10000, start_epoch=0, test_data_dir='../MIND/MINDlarge_test', tokenizer_name='prajjwal1/bert-small', train_data_dir='../MIND/MINDlarge_train', use_pretrain_model=True, user_log_length=50, user_log_mask=False, user_query_vector_dim=200, word_embedding_dim=512)
+[INFO 2022-12-15 15:09:03,175] hvd_size:1, hvd_rank:0, hvd_local_rank:0
+{'../MIND/MINDlarge_train/behaviors_np4_0.tsv': 845914, '../MIND/MINDlarge_train/behaviors_np4_3.tsv': 845914, '../MIND/MINDlarge_train/behaviors_np4_1.tsv': 845914, '../MIND/MINDlarge_train/behaviors_np4_2.tsv': 845914}
+[INFO 2022-12-15 15:09:03,532] worker_rank:0, world_size:1, shuffle:True, seed:0, directory:../MIND/MINDlarge_train, files:['../MIND/MINDlarge_train/behaviors_np4_2.tsv', '../MIND/MINDlarge_train/behaviors_np4_0.tsv', '../MIND/MINDlarge_train/behaviors_np4_1.tsv', '../MIND/MINDlarge_train/behaviors_np4_3.tsv']
+[INFO 2022-12-15 15:09:03,532] [0] contains 3383656 samples 105739 steps
+[INFO 2022-12-15 15:09:39,670] loaded pretrain model: ../BERT_finetune.pt
+0 loaded pretrained parameters:
+83 randomly initialized parameters:
+	news_encoder.bert_model.embeddings.position_ids
+	news_encoder.bert_model.embeddings.word_embeddings.weight
+	news_encoder.bert_model.embeddings.position_embeddings.weight
+	news_encoder.bert_model.embeddings.token_type_embeddings.weight
+	news_encoder.bert_model.embeddings.LayerNorm.weight
+	news_encoder.bert_model.embeddings.LayerNorm.bias
+	news_encoder.bert_model.encoder.layer.0.attention.self.query.weight
+	news_encoder.bert_model.encoder.layer.0.attention.self.query.bias
+	news_encoder.bert_model.encoder.layer.0.attention.self.key.weight
+	news_encoder.bert_model.encoder.layer.0.attention.self.key.bias
+	news_encoder.bert_model.encoder.layer.0.attention.self.value.weight
+	news_encoder.bert_model.encoder.layer.0.attention.self.value.bias
+	news_encoder.bert_model.encoder.layer.0.attention.output.dense.weight
+	news_encoder.bert_model.encoder.layer.0.attention.output.dense.bias
+	news_encoder.bert_model.encoder.layer.0.attention.output.LayerNorm.weight
+	news_encoder.bert_model.encoder.layer.0.attention.output.LayerNorm.bias
+	news_encoder.bert_model.encoder.layer.0.intermediate.dense.weight
+	news_encoder.bert_model.encoder.layer.0.intermediate.dense.bias
+	news_encoder.bert_model.encoder.layer.0.output.dense.weight
+	news_encoder.bert_model.encoder.layer.0.output.dense.bias
+	news_encoder.bert_model.encoder.layer.0.output.LayerNorm.weight
+	news_encoder.bert_model.encoder.layer.0.output.LayerNorm.bias
+	news_encoder.bert_model.encoder.layer.1.attention.self.query.weight
+	news_encoder.bert_model.encoder.layer.1.attention.self.query.bias
+	news_encoder.bert_model.encoder.layer.1.attention.self.key.weight
+	news_encoder.bert_model.encoder.layer.1.attention.self.key.bias
+	news_encoder.bert_model.encoder.layer.1.attention.self.value.weight
+	news_encoder.bert_model.encoder.layer.1.attention.self.value.bias
+	news_encoder.bert_model.encoder.layer.1.attention.output.dense.weight
+	news_encoder.bert_model.encoder.layer.1.attention.output.dense.bias
+	news_encoder.bert_model.encoder.layer.1.attention.output.LayerNorm.weight
+	news_encoder.bert_model.encoder.layer.1.attention.output.LayerNorm.bias
+	news_encoder.bert_model.encoder.layer.1.intermediate.dense.weight
+	news_encoder.bert_model.encoder.layer.1.intermediate.dense.bias
+	news_encoder.bert_model.encoder.layer.1.output.dense.weight
+	news_encoder.bert_model.encoder.layer.1.output.dense.bias
+	news_encoder.bert_model.encoder.layer.1.output.LayerNorm.weight
+	news_encoder.bert_model.encoder.layer.1.output.LayerNorm.bias
+	news_encoder.bert_model.encoder.layer.2.attention.self.query.weight
+	news_encoder.bert_model.encoder.layer.2.attention.self.query.bias
+	news_encoder.bert_model.encoder.layer.2.attention.self.key.weight
+	news_encoder.bert_model.encoder.layer.2.attention.self.key.bias
+	news_encoder.bert_model.encoder.layer.2.attention.self.value.weight
+	news_encoder.bert_model.encoder.layer.2.attention.self.value.bias
+	news_encoder.bert_model.encoder.layer.2.attention.output.dense.weight
+	news_encoder.bert_model.encoder.layer.2.attention.output.dense.bias
+	news_encoder.bert_model.encoder.layer.2.attention.output.LayerNorm.weight
+	news_encoder.bert_model.encoder.layer.2.attention.output.LayerNorm.bias
+	news_encoder.bert_model.encoder.layer.2.intermediate.dense.weight
+	news_encoder.bert_model.encoder.layer.2.intermediate.dense.bias
+	news_encoder.bert_model.encoder.layer.2.output.dense.weight
+	news_encoder.bert_model.encoder.layer.2.output.dense.bias
+	news_encoder.bert_model.encoder.layer.2.output.LayerNorm.weight
+	news_encoder.bert_model.encoder.layer.2.output.LayerNorm.bias
+	news_encoder.bert_model.encoder.layer.3.attention.self.query.weight
+	news_encoder.bert_model.encoder.layer.3.attention.self.query.bias
+	news_encoder.bert_model.encoder.layer.3.attention.self.key.weight
+	news_encoder.bert_model.encoder.layer.3.attention.self.key.bias
+	news_encoder.bert_model.encoder.layer.3.attention.self.value.weight
+	news_encoder.bert_model.encoder.layer.3.attention.self.value.bias
+	news_encoder.bert_model.encoder.layer.3.attention.output.dense.weight
+	news_encoder.bert_model.encoder.layer.3.attention.output.dense.bias
+	news_encoder.bert_model.encoder.layer.3.attention.output.LayerNorm.weight
+	news_encoder.bert_model.encoder.layer.3.attention.output.LayerNorm.bias
+	news_encoder.bert_model.encoder.layer.3.intermediate.dense.weight
+	news_encoder.bert_model.encoder.layer.3.intermediate.dense.bias
+	news_encoder.bert_model.encoder.layer.3.output.dense.weight
+	news_encoder.bert_model.encoder.layer.3.output.dense.bias
+	news_encoder.bert_model.encoder.layer.3.output.LayerNorm.weight
+	news_encoder.bert_model.encoder.layer.3.output.LayerNorm.bias
+	news_encoder.bert_model.pooler.dense.weight
+	news_encoder.bert_model.pooler.dense.bias
+	news_encoder.attn.att_fc1.weight
+	news_encoder.attn.att_fc1.bias
+	news_encoder.attn.att_fc2.weight
+	news_encoder.attn.att_fc2.bias
+	news_encoder.dense.weight
+	news_encoder.dense.bias
+	user_encoder.pad_doc
+	user_encoder.attn.att_fc1.weight
+	user_encoder.attn.att_fc1.bias
+	user_encoder.attn.att_fc2.weight
+	user_encoder.attn.att_fc2.bias
+[INFO 2022-12-15 15:09:39,671] finetune block 2
+[INFO 2022-12-15 15:09:39,671] finetune block 3
+ModelBert(
+  (news_encoder): NewsEncoder(
+    (bert_model): BertModel(
+      (embeddings): BertEmbeddings(
+        (word_embeddings): Embedding(30522, 512, padding_idx=0)
+        (position_embeddings): Embedding(512, 512)
+        (token_type_embeddings): Embedding(2, 512)
+        (LayerNorm): LayerNorm((512,), eps=1e-12, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+      (encoder): BertEncoder(
+        (layer): ModuleList(
+          (0): BertLayer(
+            (attention): BertAttention(
+              (self): BertSelfAttention(
+                (query): Linear(in_features=512, out_features=512, bias=True)
+                (key): Linear(in_features=512, out_features=512, bias=True)
+                (value): Linear(in_features=512, out_features=512, bias=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+              (output): BertSelfOutput(
+                (dense): Linear(in_features=512, out_features=512, bias=True)
+                (LayerNorm): LayerNorm((512,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (intermediate): BertIntermediate(
+              (dense): Linear(in_features=512, out_features=2048, bias=True)
+              (intermediate_act_fn): GELUActivation()
+            )
+            (output): BertOutput(
+              (dense): Linear(in_features=2048, out_features=512, bias=True)
+              (LayerNorm): LayerNorm((512,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (1): BertLayer(
+            (attention): BertAttention(
+              (self): BertSelfAttention(
+                (query): Linear(in_features=512, out_features=512, bias=True)
+                (key): Linear(in_features=512, out_features=512, bias=True)
+                (value): Linear(in_features=512, out_features=512, bias=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+              (output): BertSelfOutput(
+                (dense): Linear(in_features=512, out_features=512, bias=True)
+                (LayerNorm): LayerNorm((512,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (intermediate): BertIntermediate(
+              (dense): Linear(in_features=512, out_features=2048, bias=True)
+              (intermediate_act_fn): GELUActivation()
+            )
+            (output): BertOutput(
+              (dense): Linear(in_features=2048, out_features=512, bias=True)
+              (LayerNorm): LayerNorm((512,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (2): BertLayer(
+            (attention): BertAttention(
+              (self): BertSelfAttention(
+                (query): Linear(in_features=512, out_features=512, bias=True)
+                (key): Linear(in_features=512, out_features=512, bias=True)
+                (value): Linear(in_features=512, out_features=512, bias=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+              (output): BertSelfOutput(
+                (dense): Linear(in_features=512, out_features=512, bias=True)
+                (LayerNorm): LayerNorm((512,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (intermediate): BertIntermediate(
+              (dense): Linear(in_features=512, out_features=2048, bias=True)
+              (intermediate_act_fn): GELUActivation()
+            )
+            (output): BertOutput(
+              (dense): Linear(in_features=2048, out_features=512, bias=True)
+              (LayerNorm): LayerNorm((512,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (3): BertLayer(
+            (attention): BertAttention(
+              (self): BertSelfAttention(
+                (query): Linear(in_features=512, out_features=512, bias=True)
+                (key): Linear(in_features=512, out_features=512, bias=True)
+                (value): Linear(in_features=512, out_features=512, bias=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+              (output): BertSelfOutput(
+                (dense): Linear(in_features=512, out_features=512, bias=True)
+                (LayerNorm): LayerNorm((512,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (intermediate): BertIntermediate(
+              (dense): Linear(in_features=512, out_features=2048, bias=True)
+              (intermediate_act_fn): GELUActivation()
+            )
+            (output): BertOutput(
+              (dense): Linear(in_features=2048, out_features=512, bias=True)
+              (LayerNorm): LayerNorm((512,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+        )
+      )
+      (pooler): BertPooler(
+        (dense): Linear(in_features=512, out_features=512, bias=True)
+        (activation): Tanh()
+      )
+    )
+    (attn): AttentionPooling(
+      (att_fc1): Linear(in_features=512, out_features=200, bias=True)
+      (att_fc2): Linear(in_features=200, out_features=1, bias=True)
+    )
+    (dense): Linear(in_features=512, out_features=256, bias=True)
+  )
+  (user_encoder): UserEncoder(
+    (attn): AttentionPooling(
+      (att_fc1): Linear(in_features=256, out_features=200, bias=True)
+      (att_fc2): Linear(in_features=200, out_features=1, bias=True)
+    )
+  )
+  (loss_fn): CrossEntropyLoss()
+)
+news_encoder.bert_model.embeddings.word_embeddings.weight False
+news_encoder.bert_model.embeddings.position_embeddings.weight False
+news_encoder.bert_model.embeddings.token_type_embeddings.weight False
+news_encoder.bert_model.embeddings.LayerNorm.weight False
+news_encoder.bert_model.embeddings.LayerNorm.bias False
+news_encoder.bert_model.encoder.layer.0.attention.self.query.weight False
+news_encoder.bert_model.encoder.layer.0.attention.self.query.bias False
+news_encoder.bert_model.encoder.layer.0.attention.self.key.weight False
+news_encoder.bert_model.encoder.layer.0.attention.self.key.bias False
+news_encoder.bert_model.encoder.layer.0.attention.self.value.weight False
+news_encoder.bert_model.encoder.layer.0.attention.self.value.bias False
+news_encoder.bert_model.encoder.layer.0.attention.output.dense.weight False
+news_encoder.bert_model.encoder.layer.0.attention.output.dense.bias False
+news_encoder.bert_model.encoder.layer.0.attention.output.LayerNorm.weight False
+news_encoder.bert_model.encoder.layer.0.attention.output.LayerNorm.bias False
+news_encoder.bert_model.encoder.layer.0.intermediate.dense.weight False
+news_encoder.bert_model.encoder.layer.0.intermediate.dense.bias False
+news_encoder.bert_model.encoder.layer.0.output.dense.weight False
+news_encoder.bert_model.encoder.layer.0.output.dense.bias False
+news_encoder.bert_model.encoder.layer.0.output.LayerNorm.weight False
+news_encoder.bert_model.encoder.layer.0.output.LayerNorm.bias False
+news_encoder.bert_model.encoder.layer.1.attention.self.query.weight False
+news_encoder.bert_model.encoder.layer.1.attention.self.query.bias False
+news_encoder.bert_model.encoder.layer.1.attention.self.key.weight False
+news_encoder.bert_model.encoder.layer.1.attention.self.key.bias False
+news_encoder.bert_model.encoder.layer.1.attention.self.value.weight False
+news_encoder.bert_model.encoder.layer.1.attention.self.value.bias False
+news_encoder.bert_model.encoder.layer.1.attention.output.dense.weight False
+news_encoder.bert_model.encoder.layer.1.attention.output.dense.bias False
+news_encoder.bert_model.encoder.layer.1.attention.output.LayerNorm.weight False
+news_encoder.bert_model.encoder.layer.1.attention.output.LayerNorm.bias False
+news_encoder.bert_model.encoder.layer.1.intermediate.dense.weight False
+news_encoder.bert_model.encoder.layer.1.intermediate.dense.bias False
+news_encoder.bert_model.encoder.layer.1.output.dense.weight False
+news_encoder.bert_model.encoder.layer.1.output.dense.bias False
+news_encoder.bert_model.encoder.layer.1.output.LayerNorm.weight False
+news_encoder.bert_model.encoder.layer.1.output.LayerNorm.bias False
+news_encoder.bert_model.encoder.layer.2.attention.self.query.weight True
+news_encoder.bert_model.encoder.layer.2.attention.self.query.bias True
+news_encoder.bert_model.encoder.layer.2.attention.self.key.weight True
+news_encoder.bert_model.encoder.layer.2.attention.self.key.bias True
+news_encoder.bert_model.encoder.layer.2.attention.self.value.weight True
+news_encoder.bert_model.encoder.layer.2.attention.self.value.bias True
+news_encoder.bert_model.encoder.layer.2.attention.output.dense.weight True
+news_encoder.bert_model.encoder.layer.2.attention.output.dense.bias True
+news_encoder.bert_model.encoder.layer.2.attention.output.LayerNorm.weight True
+news_encoder.bert_model.encoder.layer.2.attention.output.LayerNorm.bias True
+news_encoder.bert_model.encoder.layer.2.intermediate.dense.weight True
+news_encoder.bert_model.encoder.layer.2.intermediate.dense.bias True
+news_encoder.bert_model.encoder.layer.2.output.dense.weight True
+news_encoder.bert_model.encoder.layer.2.output.dense.bias True
+news_encoder.bert_model.encoder.layer.2.output.LayerNorm.weight True
+news_encoder.bert_model.encoder.layer.2.output.LayerNorm.bias True
+news_encoder.bert_model.encoder.layer.3.attention.self.query.weight True
+news_encoder.bert_model.encoder.layer.3.attention.self.query.bias True
+news_encoder.bert_model.encoder.layer.3.attention.self.key.weight True
+news_encoder.bert_model.encoder.layer.3.attention.self.key.bias True
+news_encoder.bert_model.encoder.layer.3.attention.self.value.weight True
+news_encoder.bert_model.encoder.layer.3.attention.self.value.bias True
+news_encoder.bert_model.encoder.layer.3.attention.output.dense.weight True
+news_encoder.bert_model.encoder.layer.3.attention.output.dense.bias True
+news_encoder.bert_model.encoder.layer.3.attention.output.LayerNorm.weight True
+news_encoder.bert_model.encoder.layer.3.attention.output.LayerNorm.bias True
+news_encoder.bert_model.encoder.layer.3.intermediate.dense.weight True
+news_encoder.bert_model.encoder.layer.3.intermediate.dense.bias True
+news_encoder.bert_model.encoder.layer.3.output.dense.weight True
+news_encoder.bert_model.encoder.layer.3.output.dense.bias True
+news_encoder.bert_model.encoder.layer.3.output.LayerNorm.weight True
+news_encoder.bert_model.encoder.layer.3.output.LayerNorm.bias True
+news_encoder.bert_model.pooler.dense.weight False
+news_encoder.bert_model.pooler.dense.bias False
+news_encoder.attn.att_fc1.weight True
+news_encoder.attn.att_fc1.bias True
+news_encoder.attn.att_fc2.weight True
+news_encoder.attn.att_fc2.bias True
+news_encoder.dense.weight True
+news_encoder.dense.bias True
+user_encoder.pad_doc True
+user_encoder.attn.att_fc1.weight True
+user_encoder.attn.att_fc1.bias True
+user_encoder.attn.att_fc2.weight True
+user_encoder.attn.att_fc2.bias True
+[INFO 2022-12-15 15:09:39,773] Training...
+[INFO 2022-12-15 15:09:39,773] DataLoader __iter__()
+[INFO 2022-12-15 15:09:39,774] worker_rank:0, world_size:1, shuffle:True, seed:0, directory:../MIND/MINDlarge_train, files:['../MIND/MINDlarge_train/behaviors_np4_2.tsv', '../MIND/MINDlarge_train/behaviors_np4_0.tsv', '../MIND/MINDlarge_train/behaviors_np4_1.tsv', '../MIND/MINDlarge_train/behaviors_np4_3.tsv']
+[WARNING 2022-12-15 15:09:45,385] From /home/jhkim21/coursework/nlp/Tiny-NewsRec/PLM-NR/streaming.py:78: DatasetV1.make_one_shot_iterator (from tensorflow.python.data.ops.dataset_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `for ... in dataset:` to iterate over a dataset. If using `tf.estimator`, return the `Dataset` object directly from your input function. As a last resort, you can use `tf.compat.v1.data.make_one_shot_iterator(dataset)`.
+[WARNING 2022-12-15 15:09:45,398] From /home/jhkim21/coursework/nlp/Tiny-NewsRec/PLM-NR/streaming.py:84: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+[INFO 2022-12-15 15:09:49,567] [0] Ed: 0, train_loss: inf, acc: inf
+[INFO 2022-12-15 15:15:30,373] [0] Ed: 3200, train_loss: 1.59265, acc: 0.34844
+[INFO 2022-12-15 15:20:48,157] [0] Ed: 6400, train_loss: 1.53938, acc: 0.35766
+[INFO 2022-12-15 15:26:05,047] [0] Ed: 9600, train_loss: 1.51494, acc: 0.36740
+[INFO 2022-12-15 15:31:22,775] [0] Ed: 12800, train_loss: 1.50006, acc: 0.37437
+[INFO 2022-12-15 15:36:39,228] [0] Ed: 16000, train_loss: 1.49294, acc: 0.37456
+[INFO 2022-12-15 15:41:56,157] [0] Ed: 19200, train_loss: 1.48582, acc: 0.37792
+[INFO 2022-12-15 15:47:15,285] [0] Ed: 22400, train_loss: 1.47787, acc: 0.38058
+[INFO 2022-12-15 15:52:33,593] [0] Ed: 25600, train_loss: 1.47027, acc: 0.38559
+[INFO 2022-12-15 15:57:50,643] [0] Ed: 28800, train_loss: 1.46449, acc: 0.38785
+[INFO 2022-12-15 16:03:08,197] [0] Ed: 32000, train_loss: 1.45816, acc: 0.39112
+[INFO 2022-12-15 16:08:25,884] [0] Ed: 35200, train_loss: 1.45152, acc: 0.39503
+[INFO 2022-12-15 16:13:43,960] [0] Ed: 38400, train_loss: 1.44655, acc: 0.39794
+[INFO 2022-12-15 16:19:03,146] [0] Ed: 41600, train_loss: 1.44241, acc: 0.40000
+[INFO 2022-12-15 16:24:19,274] [0] Ed: 44800, train_loss: 1.43955, acc: 0.40147
+[INFO 2022-12-15 16:29:36,397] [0] Ed: 48000, train_loss: 1.43615, acc: 0.40340
+[INFO 2022-12-15 16:34:53,760] [0] Ed: 51200, train_loss: 1.43311, acc: 0.40502
+[INFO 2022-12-15 16:40:11,353] [0] Ed: 54400, train_loss: 1.42850, acc: 0.40744
+[INFO 2022-12-15 16:45:28,416] [0] Ed: 57600, train_loss: 1.42515, acc: 0.40969
+[INFO 2022-12-15 16:50:44,182] [0] Ed: 60800, train_loss: 1.42263, acc: 0.41063
+[INFO 2022-12-15 16:55:59,965] [0] Ed: 64000, train_loss: 1.42092, acc: 0.41122
+[INFO 2022-12-15 17:01:16,111] [0] Ed: 67200, train_loss: 1.41764, acc: 0.41350
+[INFO 2022-12-15 17:06:33,845] [0] Ed: 70400, train_loss: 1.41588, acc: 0.41420
+[INFO 2022-12-15 17:11:50,568] [0] Ed: 73600, train_loss: 1.41376, acc: 0.41546
+[INFO 2022-12-15 17:17:06,015] [0] Ed: 76800, train_loss: 1.41098, acc: 0.41747
+[INFO 2022-12-15 17:22:21,041] [0] Ed: 80000, train_loss: 1.40991, acc: 0.41851
+[INFO 2022-12-15 17:27:39,739] [0] Ed: 83200, train_loss: 1.40882, acc: 0.41895
+[INFO 2022-12-15 17:32:56,545] [0] Ed: 86400, train_loss: 1.40709, acc: 0.41987
+[INFO 2022-12-15 17:38:13,969] [0] Ed: 89600, train_loss: 1.40627, acc: 0.42032
+[INFO 2022-12-15 17:43:31,581] [0] Ed: 92800, train_loss: 1.40505, acc: 0.42106
+[INFO 2022-12-15 17:48:49,662] [0] Ed: 96000, train_loss: 1.40337, acc: 0.42226
+[INFO 2022-12-15 17:54:06,723] [0] Ed: 99200, train_loss: 1.40206, acc: 0.42293
+[INFO 2022-12-15 17:59:24,452] [0] Ed: 102400, train_loss: 1.40129, acc: 0.42319
+[INFO 2022-12-15 18:04:41,571] [0] Ed: 105600, train_loss: 1.39995, acc: 0.42381
+[INFO 2022-12-15 18:09:58,411] [0] Ed: 108800, train_loss: 1.39842, acc: 0.42450
+[INFO 2022-12-15 18:15:16,924] [0] Ed: 112000, train_loss: 1.39807, acc: 0.42463
+[INFO 2022-12-15 18:20:39,588] [0] Ed: 115200, train_loss: 1.39699, acc: 0.42490
+[INFO 2022-12-15 18:25:58,518] [0] Ed: 118400, train_loss: 1.39555, acc: 0.42573
+[INFO 2022-12-15 18:31:19,454] [0] Ed: 121600, train_loss: 1.39452, acc: 0.42656
+[INFO 2022-12-15 18:36:36,102] [0] Ed: 124800, train_loss: 1.39360, acc: 0.42696
+[INFO 2022-12-15 18:41:53,199] [0] Ed: 128000, train_loss: 1.39297, acc: 0.42734
+[INFO 2022-12-15 18:47:09,589] [0] Ed: 131200, train_loss: 1.39168, acc: 0.42790
+[INFO 2022-12-15 18:52:25,856] [0] Ed: 134400, train_loss: 1.39045, acc: 0.42881
+[INFO 2022-12-15 18:57:43,272] [0] Ed: 137600, train_loss: 1.38935, acc: 0.42940
+[INFO 2022-12-15 19:03:00,539] [0] Ed: 140800, train_loss: 1.38828, acc: 0.43009
+[INFO 2022-12-15 19:08:18,657] [0] Ed: 144000, train_loss: 1.38764, acc: 0.43034
+[INFO 2022-12-15 19:13:37,880] [0] Ed: 147200, train_loss: 1.38578, acc: 0.43130
+[INFO 2022-12-15 19:18:52,773] [0] Ed: 150400, train_loss: 1.38499, acc: 0.43162
+[INFO 2022-12-15 19:24:06,879] [0] Ed: 153600, train_loss: 1.38381, acc: 0.43218
+[INFO 2022-12-15 19:29:19,226] [0] Ed: 156800, train_loss: 1.38322, acc: 0.43254
+[INFO 2022-12-15 19:34:32,140] [0] Ed: 160000, train_loss: 1.38173, acc: 0.43349
+[INFO 2022-12-15 19:39:46,339] [0] Ed: 163200, train_loss: 1.38045, acc: 0.43396
+[INFO 2022-12-15 19:45:01,049] [0] Ed: 166400, train_loss: 1.37976, acc: 0.43451
+[INFO 2022-12-15 19:50:18,151] [0] Ed: 169600, train_loss: 1.37908, acc: 0.43488
+[INFO 2022-12-15 19:55:33,081] [0] Ed: 172800, train_loss: 1.37815, acc: 0.43547
+[INFO 2022-12-15 20:00:48,424] [0] Ed: 176000, train_loss: 1.37747, acc: 0.43569
+[INFO 2022-12-15 20:06:04,895] [0] Ed: 179200, train_loss: 1.37681, acc: 0.43601
+[INFO 2022-12-15 20:11:18,299] [0] Ed: 182400, train_loss: 1.37625, acc: 0.43628
+[INFO 2022-12-15 20:16:34,366] [0] Ed: 185600, train_loss: 1.37542, acc: 0.43677
+[INFO 2022-12-15 20:21:47,933] [0] Ed: 188800, train_loss: 1.37492, acc: 0.43702
+[INFO 2022-12-15 20:27:02,526] [0] Ed: 192000, train_loss: 1.37419, acc: 0.43738
+[INFO 2022-12-15 20:32:17,729] [0] Ed: 195200, train_loss: 1.37326, acc: 0.43779
+[INFO 2022-12-15 20:37:34,116] [0] Ed: 198400, train_loss: 1.37292, acc: 0.43804
+[INFO 2022-12-15 20:42:51,698] [0] Ed: 201600, train_loss: 1.37175, acc: 0.43875
+[INFO 2022-12-15 20:48:07,965] [0] Ed: 204800, train_loss: 1.37134, acc: 0.43887
+[INFO 2022-12-15 20:53:24,606] [0] Ed: 208000, train_loss: 1.37048, acc: 0.43921
+[INFO 2022-12-15 20:58:42,925] [0] Ed: 211200, train_loss: 1.36987, acc: 0.43942
+[INFO 2022-12-15 21:04:00,592] [0] Ed: 214400, train_loss: 1.36928, acc: 0.43976
+[INFO 2022-12-15 21:09:19,879] [0] Ed: 217600, train_loss: 1.36857, acc: 0.44020
+[INFO 2022-12-15 21:14:40,104] [0] Ed: 220800, train_loss: 1.36824, acc: 0.44017
+[INFO 2022-12-15 21:20:00,896] [0] Ed: 224000, train_loss: 1.36768, acc: 0.44044
+1 tensor(1.3675)
+[INFO 2022-12-15 21:20:01,089] Model saved to ../model_all/bert/epoch-1.pt
+[INFO 2022-12-15 21:20:01,090] DataLoader __iter__()
+[INFO 2022-12-15 21:20:01,091] shut down pool.
+[INFO 2022-12-15 21:20:01,099] worker_rank:0, world_size:1, shuffle:True, seed:1, directory:../MIND/MINDlarge_train, files:['../MIND/MINDlarge_train/behaviors_np4_3.tsv', '../MIND/MINDlarge_train/behaviors_np4_0.tsv', '../MIND/MINDlarge_train/behaviors_np4_2.tsv', '../MIND/MINDlarge_train/behaviors_np4_1.tsv']
+[INFO 2022-12-15 21:20:04,553] [0] Ed: 0, train_loss: inf, acc: inf
+[INFO 2022-12-15 21:25:22,978] [0] Ed: 3200, train_loss: 1.31469, acc: 0.48063
+[INFO 2022-12-15 21:30:36,864] [0] Ed: 6400, train_loss: 1.31772, acc: 0.47031
+[INFO 2022-12-15 21:35:50,654] [0] Ed: 9600, train_loss: 1.31804, acc: 0.47021
+[INFO 2022-12-15 21:41:04,916] [0] Ed: 12800, train_loss: 1.31947, acc: 0.46883
+[INFO 2022-12-15 21:46:18,606] [0] Ed: 16000, train_loss: 1.32364, acc: 0.46656
+[INFO 2022-12-15 21:51:34,893] [0] Ed: 19200, train_loss: 1.32224, acc: 0.46562
+[INFO 2022-12-15 21:56:52,925] [0] Ed: 22400, train_loss: 1.32093, acc: 0.46549
+[INFO 2022-12-15 22:02:10,192] [0] Ed: 25600, train_loss: 1.31831, acc: 0.46492
+[INFO 2022-12-15 22:07:27,635] [0] Ed: 28800, train_loss: 1.31689, acc: 0.46594
+[INFO 2022-12-15 22:12:47,426] [0] Ed: 32000, train_loss: 1.31536, acc: 0.46681
+[INFO 2022-12-15 22:18:06,224] [0] Ed: 35200, train_loss: 1.31295, acc: 0.46895
+[INFO 2022-12-15 22:23:23,247] [0] Ed: 38400, train_loss: 1.31276, acc: 0.46927
+[INFO 2022-12-15 22:28:41,180] [0] Ed: 41600, train_loss: 1.31181, acc: 0.46918
+[INFO 2022-12-15 22:33:58,808] [0] Ed: 44800, train_loss: 1.31153, acc: 0.46933
+[INFO 2022-12-15 22:39:17,260] [0] Ed: 48000, train_loss: 1.31164, acc: 0.46925
+[INFO 2022-12-15 22:44:38,044] [0] Ed: 51200, train_loss: 1.31065, acc: 0.47016
+[INFO 2022-12-15 22:49:43,389] [0] Ed: 54400, train_loss: 1.30918, acc: 0.47092
+[INFO 2022-12-15 22:54:46,986] [0] Ed: 57600, train_loss: 1.30777, acc: 0.47134
+[INFO 2022-12-15 22:59:55,044] [0] Ed: 60800, train_loss: 1.30789, acc: 0.47148
+[INFO 2022-12-15 23:05:03,374] [0] Ed: 64000, train_loss: 1.30827, acc: 0.47103
+[INFO 2022-12-15 23:10:11,835] [0] Ed: 67200, train_loss: 1.30677, acc: 0.47201
+[INFO 2022-12-15 23:15:23,193] [0] Ed: 70400, train_loss: 1.30723, acc: 0.47151
+[INFO 2022-12-15 23:20:35,950] [0] Ed: 73600, train_loss: 1.30538, acc: 0.47291
